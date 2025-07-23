@@ -6,13 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.classList.toggle('open');
   });
 
+  // Zamykanie menu po kliknięciu w link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+    });
+  });
+
   // Formularz zapisu
   const signupForm = document.getElementById('signupForm');
   const signupEntries = document.getElementById('signupEntries');
 
   const saved = JSON.parse(localStorage.getItem('baktravel_signups') || '[]');
 
-  // Wyświetl zapisanych z przyciskiem "Usuń"
   saved.forEach((entry, i) => {
     const li = document.createElement('li');
     li.innerHTML = `
@@ -22,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     signupEntries?.appendChild(li);
   });
 
-  // Obsługa usuwania wpisów
   signupEntries?.addEventListener('click', e => {
     if (e.target.classList.contains('delete-entry')) {
       const index = parseInt(e.target.dataset.index);
@@ -32,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Obsługa nowego zapisu
   signupForm?.addEventListener('submit', e => {
     e.preventDefault();
     const cz = {
@@ -55,19 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Zapisano! Do zobaczenia na wyprawie 😊');
   });
 
-  // Mapa wyprawy (jeśli istnieje)
   if (document.getElementById('map')) {
     initMap();
   }
 
-  // Mapa kontaktowa (jeśli istnieje)
   if (document.getElementById('contactMap')) {
     initContactMap();
   }
 });
 
 function initMap() {
-  const destination = [50.8662, 16.7168]; // Ślęża
+  const destination = [50.8662, 16.7168];
   const map = L.map('map').setView(destination, 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -85,12 +87,6 @@ function initContactMap() {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(contactMap);
-
-  document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-  });
-});
 
   L.marker([51.233639, 17.112167]).addTo(contactMap)
     .bindPopup('Tu nas znajdziesz! 📍')
