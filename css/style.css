@@ -7,8 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: url('../assets/img/hero.jpg') center center no-repeat fixed;
-  background-size: cover;
+  background: #f4f4f4;
   color: #333;
   line-height: 1.6;
 }
