@@ -86,6 +86,12 @@ function initContactMap() {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(contactMap);
 
+  document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+  });
+});
+
   L.marker([51.233639, 17.112167]).addTo(contactMap)
     .bindPopup('Tu nas znajdziesz! 📍')
     .openPopup();
