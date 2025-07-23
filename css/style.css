@@ -291,3 +291,19 @@ main, .about, .contact, .gallery, .trip-detail-page {
   max-width: 1000px;
   margin: 40px auto;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+@media (max-width: 768px) {
+  .nav-links {
+    background: #008000;
+    top: 60px;
+    right: 0;
+    left: 0; /* <- Rozciąga menu */
+    width: 100%; /* <- Pełna szerokość */
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+}
